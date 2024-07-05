@@ -4,3 +4,30 @@
 ✦ theme-light — класс светлой темы
 ✦ не забудьте описать стили для изменения темы через медизапрос пользовательских предпочтений
 */
+
+
+
+
+
+.theme-dark {
+  --headings-font-weight: 785;
+  --page-main-font-weight: 465;
+  --button-text-color: var(--color-green, #00cc14);
+  --text-color: var(--color-green, #00cc14);
+  --page-background-color: var(--color-black, #000000);
+  --page-background-image: url(../svg/pattern-dark.svg);
+  --like-contour-color: var(--color-green, #00cc14);
+
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --headings-font-weight: 785;
+    --page-main-font-weight: 465;
+    --button-text-color: var(--color-green, #00cc14);
+    --text-color: var(--color-green, #00cc14);
+    --page-background-color: var(--color-black, #000000);
+    --page-background-image: url(../svg/pattern-dark.svg);
+   
+  }
+}
