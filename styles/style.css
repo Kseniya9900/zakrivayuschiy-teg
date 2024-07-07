@@ -13,7 +13,33 @@
 Кроме этого, не меняйте HTML переключателя тем. Его разметка также гарантирует работу своего скрипта.
 
 */
+.filter-grayscale {
+  filter: grayscale(70%);
+}
 
+.filter-multiple {
+  filter: contrast(50%) hue-rotate(35deg) saturate(130%);
+}
+
+.filter-hue-rotate {
+  filter: hue-rotate(210deg);
+}
+
+.filter-saturate {
+  filter: saturate(250%);
+}
+
+.filter-invert {
+  filter: invert(100%);
+}
+
+.filter-sepia {
+  filter: sepia(90%);
+}
+
+.filter-blur {
+  filter: blur(10px);
+}
 
 .page {
   padding-block-start: 100px;
@@ -21,9 +47,8 @@
   font-family: var(--page-main-font-family, "Inter", sans-serif);
   background-color: var(--page-background-color, #ffffff);
   background-image: var(--page-background-image, none);
-  background-size: 4px;
+  background-size: cover;
   background-attachment: fixed;
-  background-repeat: repeat;
   font-variation-settings: "wght" var(--page-main-font-weight, 400);
   min-inline-size: 320px;
   min-block-size: 100dvb;
@@ -33,6 +58,26 @@
   margin-block-end: 100px;
 }
 
+.modal::backdrop {
+  opacity: 0.75;
+  background: var(--color-black, #000000);
+}
+
+.modal__content {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.modal__icon {
+  flex-shrink: 0;
+  inline-size: 39px;
+  block-size: 39px;
+}
+
+.modal__button {
+  inline-size: 100%;
+}
 
 .page-title {
   font-size: clamp(3.0625rem, 2.7104rem + 1.5023vw, 4.0625rem);
@@ -153,6 +198,27 @@
 }
 
 
+.card__img-label {
+  position: absolute;
+  z-index: 1;
+
+  opacity: 0.5;
+
+  color: var(--text-color, #000000);
+  font-family: var(--page-accent-font-family, "PressStart2P", fantasy);
+
+  font-size: 14px;
+  line-height: normal;
+
+  text-transform: uppercase;
+  text-shadow: 0 0 1px var(--page-background-color, #ffffff);
+  inset-inline-end: 13px;
+  inset-block-start: 24px;
+
+  mix-blend-mode: hard-light;
+}
+
+
 .card__img {
   display: block;
   object-fit: cover;
@@ -246,14 +312,12 @@
 
 
 
-.button__text:hover {
-  color: var(--page-background-color, #ffffff);
-  
+.button__text,
+.button__icon {
+  color: var(--button-text-color, #ffffff);
+  mix-blend-mode: difference;
 }
 
-.button__save:hover {
-  color: var(--page-background-color, #ffffff);
-}
 
 .button__icon {
   block-size: 22px;
@@ -282,3 +346,14 @@
   }
 }
 
+
+@supports (
+  (-webkit-text-stroke: 1px var(--page-background-color, #ffffff)) or
+    (text-stroke: 1px var(--page-background-color, #ffffff))
+) {
+  .card__img-label {
+    text-shadow: none;
+    -webkit-text-stroke: 1px var(--page-background-color, #ffffff);
+    text-shadow: 1px var(--page-background-color, #ffffff);
+  }
+}
